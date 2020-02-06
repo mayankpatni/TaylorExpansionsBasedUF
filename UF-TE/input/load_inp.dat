@@ -1,0 +1,160 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!! Load input!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+np
+1
+x y z loadx loady loadz loadtype    ! number of rows will be equal to np
+0.0d0 1.0d0 0.0d0 0 0 -1000 2
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!! Boundary Condition !!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+num_bcinp
+1
+beam_node csnode1 csnode2					! 0 0 for fixed BC, 100 100 for SS 
+1 0 0
+
+!!!!!!!!!!!!!!variable definitions!!!!!!!!!!!!!!!!!!!!!
+np				: number of load sets
+x y z			: x y z coordinate (for load application)
+loadx 			: X component of the load	
+loady 			: Y component of the load	
+loadz 			: Z component of the load
+loadtype		: 1 - point load, 2 cross-section surface (pressure) 
+				! if loadtype is 2, then x and z entries become redundant, y location is important
+num_bcinp		: number of boundary conditions input
+beam_node		: beam node for applying the BC 
+csnode1 csnode2 : 0 0 (clamped) 100 100 (Simply-supported)	
+Simply-supported BC example is as follows:
+num_bcinp
+3
+beam_node csnode1 csnode2
+1 100 100				! node number 1 (left end): x and z constrained
+121 100 100				! node number 121 (right end) : x and z constrained
+61 100 100				! node number 61 (mid span): y constrained
+
+
+
+
+!!!!!!!!!!!!!!variable definitions!!!!!!!!!!!!!!!!!!!!!
+nmat		: number of materials
+nlayer		: number of layers
+matin		: material input for the correspoding layer
+angle1		: fibre orientation angle at the ends of the beam
+angle2		: fibre orientation angle at the mid-span of the beam
+nexp		: order of expansion
+agp			: number of gauss points (for cross-section integration)
+ne			: number of beam elements
+nne			: number of nodes per beam element
+beam_mesh	: type of distribution for beam nodes - automatic (uniform/chebyshev) or manual
+ylengthi	: initial y-coordinate
+ylengthf	: final y-coordinate (ylengthf-ylengthi = beam length)
+phynormesh	: parameter required to map a coordinate from the physical csys (x,y,z) to the normal csys (alpha,eta,beta)
+
+
+
+
+
+1 1 0 0 -0.5 3							! tload - force/area when it is surface load
+0.5 0.5 1 0.0 0.0 1 1.0 1.0 1					! xmin xmax ndx ymin ymax ndy zmin zmax ndz
+
+
+nset totnldpt							! nset-set of loads
+2 2	 							
+set nldpt tloadx tloady tloadz loadtype				! loadtype: 1-point, 2-surface, 3-beam surface
+1 1 0 0 -10.0 1							! tload - force/area when it is surface load
+0.0 1.0 76 0.0 10.0 751 0.0 0.0 1					! xmin xmax ndx ymin ymax ndy zmin zmax ndz
+1 1 0 0 -10.0 1							! tload - force/area when it is surface load
+0.0 1.0 76 0.0 10.0 751 1.0 1.0 1					! xmin xmax ndx ymin ymax ndy zmin zmax ndz
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! Boundary Condition !!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+num_bcinp
+2
+beam_node csnode1 csnode2
+1 0 0
+121 0 0
+
+
+
+
+
+nset totnldpt							! nset-set of loads
+1 1	 							
+set nldpt tloadx tloady tloadz loadtype				! loadtype: 1-point, 2-surface, 3-beam surface
+1 1 0 0 -1.0 3							! tload - force/area when it is surface load
+1.0 1.0 1 10.0 10.0 1 1.0 1.0 1					! xmin xmax ndx ymin ymax ndy zmin zmax ndz
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! Boundary Condition !!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+num_bcinp
+2
+beam_node csnode1 csnode2
+1 0 0
+31 0 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nset totnldpt							! nset-set of loads
+2 2	 							
+set nldpt tloadx tloady tloadz loadtype				! loadtype: 1-point, 2-surface
+1 1 0 0 -0.5 1							! tload - force/area when it is surface load
+0.0 1.0 51 0.0 10.0 1001 0.0 0.0 1					! xmin xmax ndx ymin ymax ndy zmin zmax ndz
+1 1 0 0 -0.5 1							! tload - force/area when it is surface load
+0.0 1.0 51 0.0 10.0 1001 1.0 1.0 1
+
+
+1 5 16
+1 16 15
+1 15 6
+61 5 16
+61 16 15
+61 15 6
+
+
+
+
+
+
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! Load input!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+nset totnldpt							! nset-set of loads
+4 4	 							
+set nldpt tloadx tloady tloadz loadtype				! loadtype: 1-point, 2-surface
+1 1 0 0 -0.05 1							! tload - force/area when it is surface load
+0.0 0.0 1 90.0 90.0 1 0.0 0.0 1					! xmin xmax ndx ymin ymax ndy zmin zmax ndz
+1 1 0 0 -0.05 1
+1.0 1.0 1 90.0 90.0 1 0.0 0.0 1
+1 1 0 0 -0.05 1
+1.0 1.0 1 90.0 90.0 1 10.0 10.0 1
+1 1 0 0 -0.05 1
+0.0 0.0 1 90.0 90.0 1 10.0 10.0 1
+
+
+
+
+nset totnldpt							! nset-set of loads
+1 2	 							
+set nldpt tloadx tloady tloadz
+1 2 0 0 -10
+0.0 0.14 29 1.0 1.0 1 0.0 0.01 3				! xmin xmax ndx ymin ymax ndy zmin zmax ndz 
+0.06 0.08 5 1.0 1.0 1 0.015 0.08 14

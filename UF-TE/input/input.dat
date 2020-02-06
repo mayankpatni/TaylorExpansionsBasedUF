@@ -1,0 +1,39 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!Finite element analysis of Beams using UF (Taylor Expansion)
+nmat nlayer       					       	 			
+2 1
+matin angle1 angle2 												! number of rows will be equal to nlayer
+1 0.0 0.0
+Material Properties	(Ex, Ey, Ez, Gyz, Gxz, Gxy, NUxy, NUxz, NUyz)	! number of rows will be equal to nmat										
+75.0e9 75.0e9 75.0e9 28.195e9 28.195e9 28.195e9 0.33 0.33 0.33
+1.0e9 25.0e9 1.0e9 0.5e9 0.2e9 0.5e9 0.01 0.25 0.25
+nexp,agp									
+2 5								
+ne,nne,beam_mesh
+10 4 cheb															! unif or cheb or manu
+ylengthi,ylengthf
+0.0d0 1.0d0
+phynormesh															
+500
+plane strain condition in x (width)									! 0 OFF, 1 ON	
+0
+
+!!!!!!!!!!!!!!variable definitions!!!!!!!!!!!!!!!!!!!!!
+nmat		: number of materials
+nlayer		: number of layers
+matin		: material input for the correspoding layer
+angle1		: fibre orientation angle at the ends of the beam
+angle2		: fibre orientation angle at the mid-span of the beam
+nexp		: order of expansion
+agp			: number of gauss points (for cross-section integration)
+ne			: number of beam elements
+nne			: number of nodes per beam element
+beam_mesh	: type of distribution for beam nodes - automatic (uniform/chebyshev) or manual
+ylengthi	: initial y-coordinate
+ylengthf	: final y-coordinate (ylengthf-ylengthi = beam length)
+phynormesh	: parameter required to map a coordinate from the physical csys (x,y,z) to the normal csys (alpha,eta,beta)
+
+
+
+
+
